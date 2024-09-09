@@ -152,7 +152,7 @@ python3 test_model.py
 
 - [D-LKANet](https://github.com/xmindflow/deformableLKA)
 
-- [UDTransNet]( https://github.com/McGregorWwww/UDTransNet)v
+- [UDTransNet]( https://github.com/McGregorWwww/UDTransNet)
 
 - [ScaleFormer](https://github.com/ZJUGiveLab/ScaleFormer)
 
