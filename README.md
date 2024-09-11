@@ -162,7 +162,3 @@ python3 test_model.py
 
   ​
 
-
-## Contact
-
-Yang:(1258595425yyw@gmail.com)
