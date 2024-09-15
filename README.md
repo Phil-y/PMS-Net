@@ -11,7 +11,7 @@ This repository is the official implementation of PMS-Net : Rethinking the Light
 - python 3.9
 - pytorch 2.1.0
 - torchvision 0.16.0
-
+- For generating GradCAM results, please follow the code on this [repository](https://github.com/jacobgil/pytorch-grad-cam)
 
 
 ## Requirements
