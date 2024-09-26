@@ -138,7 +138,7 @@ python3 test_model.py
 
 - [ACC_UNet](https://github.com/qubvel/segmentation_models.pytorch)
 
-- [MEW_UNet](https://github.com/JCruan519/MEW-UNet)
+- [UNeXt](https://github.com/jeya-maria-jose/UNeXt-pytorch)
 
 - [MISSFormer](https://github.com/ZhifangDeng/MISSFormer)
 
