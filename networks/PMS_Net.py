@@ -42,79 +42,6 @@ class DepthWiseConv2d(nn.Module):
     def forward(self, x):
         return self.conv2(self.norm_layer(self.conv1(x)))
 
-# class Gate_Transport_Block(nn.Module):
-#     def __init__(self, in_c, out_c, kernel_size):
-#         super().__init__()
-#         self.w1 = nn.Sequential(
-#             DepthWiseConv2d(in_c, in_c, kernel_size, padding=kernel_size // 2),
-#             nn.Sigmoid()
-#         )
-#
-#         self.w2 = nn.Sequential(
-#             DepthWiseConv2d(in_c, in_c, kernel_size + 2, padding=(kernel_size + 2) // 2),
-#             # nn.Sigmoid()
-#             nn.GELU()
-#         )
-#         self.wo = nn.Sequential(
-#             DepthWiseConv2d(in_c, out_c, kernel_size + 2),
-#             nn.GELU()
-#         )
-#
-#         self.cw = nn.Sequential(
-#             DepthWiseConv2d(in_c, out_c, kernel_size + 2),
-#             nn.GELU()
-#         )
-#         # self.cw = nn.Conv2d(in_c, out_c, 1)
-#     def forward(self, x):
-#         x1, x2 = self.w1(x), self.w2(x)
-#         out = self.wo(x1 + x2) + self.cw(x)
-#         return out
-
-# class Split_Combination_Gate_Bridge(nn.Module):
-#     def __init__(self, dim_xh, dim_xl, k_size=3, d_list=[7, 5, 2, 1]):
-#         super().__init__()
-#         self.pre_project = nn.Conv2d(dim_xh, dim_xl, 1)
-#         group_size = dim_xl // 2
-#         self.g0 = nn.Sequential(
-#             LayerNorm(normalized_shape=group_size + 1, data_format='channels_first'),
-#             nn.Conv2d(group_size + 1, group_size + 1, kernel_size=3, stride=1,
-#                       padding=(k_size + (k_size - 1) * (d_list[0] - 1)) // 2,
-#                       dilation=d_list[0], groups=group_size + 1)
-#         )
-#         self.g1 = nn.Sequential(
-#             LayerNorm(normalized_shape=group_size + 1, data_format='channels_first'),
-#             nn.Conv2d(group_size + 1, group_size + 1, kernel_size=3, stride=1,
-#                       padding=(k_size + (k_size - 1) * (d_list[1] - 1)) // 2,
-#                       dilation=d_list[1], groups=group_size + 1)
-#         )
-#         self.g2 = nn.Sequential(
-#             LayerNorm(normalized_shape=group_size + 1, data_format='channels_first'),
-#             nn.Conv2d(group_size + 1, group_size + 1, kernel_size=3, stride=1,
-#                       padding=(k_size + (k_size - 1) * (d_list[2] - 1)) // 2,
-#                       dilation=d_list[2], groups=group_size + 1)
-#         )
-#         self.g3 = nn.Sequential(
-#             LayerNorm(normalized_shape=group_size + 1, data_format='channels_first'),
-#             nn.Conv2d(group_size + 1, group_size + 1, kernel_size=3, stride=1,
-#                       padding=(k_size + (k_size - 1) * (d_list[3] - 1)) // 2,
-#                       dilation=d_list[3], groups=group_size + 1)
-#         )
-#         self.gtb = Gate_Transport_Block(dim_xl * 2 + 4, dim_xl, 1)
-#     def forward(self, xh, xl, mask):
-#         xh = self.pre_project(xh)
-#         xh = F.interpolate(xh, size=[xl.size(2), xl.size(3)], mode='bilinear', align_corners=True)
-#         xh = torch.chunk(xh, 4, dim=1)
-#         xl = torch.chunk(xl, 4, dim=1)
-#         x0 = self.g0(torch.cat((xh[0], xl[0], mask), dim=1))
-#         x1 = self.g1(torch.cat((xh[1], xl[1], mask), dim=1))
-#         x2 = self.g2(torch.cat((xh[2], xl[2], mask), dim=1))
-#         x3 = self.g3(torch.cat((xh[3], xl[3], mask), dim=1))
-#         x = torch.cat((x0, x1, x2, x3), dim=1)
-#         x = self.gtb(x)
-#         return x
-
-
-
 
 
 
@@ -439,14 +366,6 @@ def merge_pre_bn(module, pre_bn_1, pre_bn_2=None):
 # GFLOPs :0.35, Params : 1.28
 # 16,24,32,48,64,128
 # GFLOPs :0.42, Params : 1.81
-# 8,16,32,64,128,160
-# GFLOPs :0.86, Params : 3.75
-# 16,32,48,64,128,256
-# GFLOPs :1.18, Params : 6.70
-# 16,32,64,128,160,256
-# GFLOPs :2.34, Params : 8.68
-# 16,32,64,128,256,512
-# GFLOPs :4.58, Params : 26.64
 
 '''img_size = 512 BatchSize = 4(2,8) learning_rate = 1e-3 optimizer = Adam(AdamW)'''
 
@@ -587,56 +506,27 @@ class PMS_Net(nn.Module):
         out_bottleneck = self.sce(out)
 
         out5 = F.gelu(self.dbn1(self.decoder1(out_bottleneck)))  # b, c4, H/32, W/32
-        # out5 = F.gelu(self.dbn1(self.decoder1_1(self.decoder1(out)))) # b, c4, H/32, W/32
-        # if self.gt_ds:
-        #     gt_pre5 = self.gt_conv1(out5)
-        #     t5 = self.SCGB5(t6, t5, gt_pre5)
-        #     # gt_pre5 = F.interpolate(gt_pre5, scale_factor=32, mode ='bilinear', align_corners=True)
-        # else:
-        #     t5 = self.SCGB5(t6, t5)
+
         out5 = torch.add(out5, t5)  # b, c4, H/32, W/32
 
         out4 = F.gelu(F.interpolate(self.dbn2(self.decoder2(out5)), scale_factor=(2, 2), mode='bilinear',
                                     align_corners=True))  # b, c3, H/16, W/16
-        # out4 = F.gelu(F.interpolate(self.dbn2(self.decoder2_1(self.decoder2(out5))),scale_factor=(2,2),mode ='bilinear',align_corners=True)) # b, c3, H/16, W/16
-        # if self.gt_ds:
-        #     gt_pre4 = self.gt_conv2(out4)
-        #     t4 = self.SCGB4(t5, t4, gt_pre4)
-        #     # gt_pre4 = F.interpolate(gt_pre4, scale_factor=16, mode ='bilinear', align_corners=True)
-        # else:
-        #     t4 = self.SCGB4(t5, t4)
+
         out4 = torch.add(out4, t4)  # b, c3, H/16, W/16
 
         out3 = F.gelu(F.interpolate(self.dbn3(self.decoder3(out4)), scale_factor=(2, 2), mode='bilinear',
                                     align_corners=True))  # b, c2, H/8, W/8
-        # out3 = F.gelu(F.interpolate(self.dbn3(self.decoder3_1(self.decoder3(out4))),scale_factor=(2,2),mode ='bilinear',align_corners=True)) # b, c2, H/8, W/8
-        # if self.gt_ds:
-        #     gt_pre3 = self.gt_conv3(out3)
-        #     t3 = self.SCGB3(t4, t3, gt_pre3)
-        #     # gt_pre3 = F.interpolate(gt_pre3, scale_factor=8, mode ='bilinear', align_corners=True)
-        # else:
-        #     t3 = self.SCGB3(t4, t3)
+
         out3 = torch.add(out3, t3)  # b, c2, H/8, W/8
 
         out2 = F.gelu(F.interpolate(self.dbn4(self.decoder4(out3)), scale_factor=(2, 2), mode='bilinear',
                                     align_corners=True))  # b, c1, H/4, W/4
-        # out2 = F.gelu(F.interpolate(self.dbn4(self.decoder4_1(self.decoder4(out3))),scale_factor=(2,2),mode ='bilinear',align_corners=True)) # b, c1, H/4, W/4
-        # if self.gt_ds:
-        #     gt_pre2 = self.gt_conv4(out2)
-        #     t2 = self.SCGB2(t3, t2, gt_pre2)
-        #     # gt_pre2 = F.interpolate(gt_pre2, scale_factor=4, mode ='bilinear', align_corners=True)
-        # else:
-        #     t2 = self.SCGB2(t3, t2)
+
         out2 = torch.add(out2, t2)  # b, c1, H/4, W/4
 
         out1 = F.gelu(F.interpolate(self.dbn5(self.decoder5(out2)), scale_factor=(2, 2), mode='bilinear',
                                     align_corners=True))  # b, c0, H/2, W/2
-        # if self.gt_ds:
-        #     gt_pre1 = self.gt_conv5(out1)
-        #     t1 = self.SCGB1(t2, t1, gt_pre1)
-        #     # gt_pre1 = F.interpolate(gt_pre1, scale_factor=2, mode ='bilinear', align_corners=True)
-        # else:
-        #     t1 = self.SCGB1(t2, t1)
+
         out1 = torch.add(out1, t1)  # b, c0, H/2, W/2
 
         out0 = F.interpolate(self.final(out1), scale_factor=(2, 2), mode='bilinear',
