@@ -132,11 +132,10 @@ def main_loop(batch_size=config.batch_size, model_type=config.model_name, tensor
 
 
 
-    if  model_type == 'ACC_UNet':
-        model = ACC_UNet()
 
-    elif model_type == 'MCS_Net':
-        model = MCS_Net()
+
+    if model_type == 'MCS_Net':
+        model = PMS_Net()
 
     else: raise TypeError('Please enter a valid name for the model type')
 
