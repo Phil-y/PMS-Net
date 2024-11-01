@@ -48,7 +48,7 @@ task_name = 'BUSI_with_GT'
 test_session = "Test_session_07.15_15h46"
 # test_session = "Test_session"
 
-model_name = 'MCS_Net'
+model_name = 'PMS_Net'
 
 
 
@@ -66,21 +66,6 @@ batch_size = 4
 img_size = 256
 # img_size = 512
 
-# optimizer = 'AdamW'
-# optimizer = 'Adam'
-optimizer = 'SGD'
-
-# channel_list = 8,16,24,32,48,64
-# channel_list = 8,16,32,48,64,96
-# channel_list = 16,24,32,48,64,128
-# channel_list = 8,16,32,64,128,160
-# channel_list = 16,32,48,64,128,256
-# channel_list = 16,32,64,128,160,256
-# channel_list = 16,32,64,128,256,512
-# depth = 1,1,1,1
-# depth = 1,1,2,2
-# depth = 1,2,2,4
-# depth = 2,2,4,4
 
 train_dataset = './datasets/'+ task_name+ '/Train_Folder/'
 val_dataset = './datasets/'+ task_name+ '/Val_Folder/'
