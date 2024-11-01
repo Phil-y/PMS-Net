@@ -192,8 +192,8 @@ if __name__ == '__main__':
     # if model_type == 'ACC_UNet':
     #     model = ACC_UNet()
 
-    if model_type == 'MCS_Net':
-        model = MCS_Net()
+    if model_type == 'PMS_Net':
+        model = PMS_Net()
 
 
 
