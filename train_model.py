@@ -6,9 +6,9 @@ import random
 from torch.backends import cudnn
 from Load_Dataset import RandomGenerator,ValGenerator,ImageToImage2D
 
-from networks.ACC_UNet import ACC_UNet
 
-from networks.MCS_Net import MCS_Net
+
+from networks.PMS_Net import PMS_Net
 
 
 
