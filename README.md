@@ -26,7 +26,13 @@ pip install -r requirements.txt
 
 ## Prepare the dataset.
 
-- The GlaS  datasets, can be found here ([link](https://academictorrents.com/details/208814dd113c2b0a242e74e832ccac28fcff74e5)), The MoNuSeg  datasets, can be found here ([link](https://monuseg.grand-challenge.org/Home/)), The CHASE datasets, can be found here ([link](https://link.zhihu.com/?target=https%3A//blogs.kingston.ac.uk/retinal/chasedb1/)),The BUSI datasets, can be found here ([link](https://scholar.cu.edu.eg/?q=afahmy/pages/dataset)), The Chest Xray datasets, can be found here ([link](https://www.kaggle.com/datasets/praveengovi/coronahack-chest-xraydataset)), The ISIC2017 datasets, can be found here ([link](https://challenge.isic-archive.com/data/#2017)), divided into a 7:1:2 ratio.
+- The GlaS  datasets, can be found here ([link](https://academictorrents.com/details/208814dd113c2b0a242e74e832ccac28fcff74e5))
+- The MoNuSeg  datasets, can be found here ([link](https://monuseg.grand-challenge.org/Home/))
+- The CHASE datasets, can be found here ([link](https://link.zhihu.com/?target=https%3A//blogs.kingston.ac.uk/retinal/chasedb1/))
+- The BUSI datasets, can be found here ([link](https://scholar.cu.edu.eg/?q=afahmy/pages/dataset)),
+- The Chest Xray datasets, can be found here ([link](https://www.kaggle.com/datasets/praveengovi/coronahack-chest-xraydataset))
+- The ISIC2017 datasets, can be found here ([link](https://challenge.isic-archive.com/data/#2017))
+
 
 
 - Then prepare the datasets in the following format for easy use of the code:
