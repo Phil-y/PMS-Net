@@ -32,7 +32,7 @@ pip install -r requirements.txt
 - The BUSI datasets, can be found here ([link](https://scholar.cu.edu.eg/?q=afahmy/pages/dataset)),
 - The Chest Xray datasets, can be found here ([link](https://www.kaggle.com/datasets/praveengovi/coronahack-chest-xraydataset))
 - The ISIC2017 datasets, can be found here ([link](https://challenge.isic-archive.com/data/#2017))
-- The Synapse datasets, can be found [link](https://drive.google.com/file/d/1vxZ_eqqyycFva3luuDKZSTtyfd8-Uv3B/view)
+- The Synapse datasets, can be found ([link](https://drive.google.com/file/d/1vxZ_eqqyycFva3luuDKZSTtyfd8-Uv3B/view))
 - The TN3K datasets can be found ([Link](https://github.com/haifangong/TRFE-Net-for-thyroid-nodule-segmentation))
 
 
