@@ -1,6 +1,6 @@
 # PMS_Net
 
-This repository is the official implementation of PMS-Net : Rethinking the Light-weight U-shape network from a Convolutional Attention Perspective for Medical Image Segmentation using PyTorch.
+This repository is the official implementation of PMS-Net: A Lightweight Convolutional Attention U-Shaped Network for Medical Image Segmentation using PyTorch.
 
 ![PMS-Net](figure/model.jpg)
 
@@ -26,14 +26,14 @@ pip install -r requirements.txt
 
 ## Prepare the dataset.
 
-- The GlaS  datasets, can be found here ([link](https://academictorrents.com/details/208814dd113c2b0a242e74e832ccac28fcff74e5))
-- The MoNuSeg  datasets, can be found here ([link](https://monuseg.grand-challenge.org/Home/))
-- The CHASE datasets, can be found here ([link](https://link.zhihu.com/?target=https%3A//blogs.kingston.ac.uk/retinal/chasedb1/))
-- The BUSI datasets, can be found here ([link](https://scholar.cu.edu.eg/?q=afahmy/pages/dataset)),
-- The Chest Xray datasets, can be found here ([link](https://www.kaggle.com/datasets/praveengovi/coronahack-chest-xraydataset))
-- The ISIC2017 datasets, can be found here ([link](https://challenge.isic-archive.com/data/#2017))
-- The Synapse datasets, can be found ([link](https://drive.google.com/file/d/1vxZ_eqqyycFva3luuDKZSTtyfd8-Uv3B/view))
-- The TN3K datasets can be found ([Link](https://github.com/haifangong/TRFE-Net-for-thyroid-nodule-segmentation))
+- The GlaS  datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1F3MA4xUWRMqXLweGu3Sw6SdA1HVX-5y6/view?usp=drive_link))
+- The MoNuSeg  datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1MNW82SC5ldNIwjD1vs4m9Dt0u_HtI2-b/view?usp=drive_link))
+- The CHASE datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1bq6xZRaxxF-RLF8U7vLCeK5e3mwZtkUf/view?usp=drive_link))
+- The BUSI datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1ZeiUCygaXPqIdzsHfZeOIQ4cWgOTBJev/view?usp=drive_link)),
+- The Chest Xray datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1O0By-whbMNFQYYUQk5OHgDuZohhO0k7O/view?usp=drive_link))
+- The ISIC2017 datasets, can be found here ([Google Drive](https://drive.google.com/file/d/1h-DnH5u2VxNLz3k4Bz8p_r5X5rQO7aHZ/view?usp=drive_link))
+- The Synapse datasets, can be found ([Google Drive](https://drive.google.com/file/d/1c2oK6-LeUtrOdVNpbft5dpbatRoFrBIm/view?usp=drive_link))
+
 
 
 #### Then prepare the datasets in the following format for easy use of the code:
@@ -135,10 +135,6 @@ python3 test_model.py
 
 ## Reference
 
-- [UNet3+](https://github.com/ZJUGiveLab/UNet-Version)
-
-- [MultiResUNet](https://github.com/makifozkanoglu/MultiResUNet-PyTorch)
-
 - [TransUNet](https://github.com/Beckschen/TransUNet)
 
 - [UCTransNet](https://github.com/McGregorWwww/UCTransNet)
@@ -147,23 +143,11 @@ python3 test_model.py
 
 - [UNeXt](https://github.com/jeya-maria-jose/UNeXt-pytorch)
 
-- [MISSFormer](https://github.com/ZhifangDeng/MISSFormer)
-
-- [U2Net](https://github.com/NathanUA/U-2-Net)
-
-- [SETR](https://github.com/fudan-zvg/SETR)
-
 - [DAEFormer](https://github.com/xmindflow/DAEFormer)
-
-- [AttUNet](https://github.com/ozan-oktay/Attention-Gated-Networks)
 
 - [D-LKANet](https://github.com/xmindflow/deformableLKA)
 
 - [UDTransNet]( https://github.com/McGregorWwww/UDTransNet)
-
-- [ScaleFormer](https://github.com/ZJUGiveLab/ScaleFormer)
-
-- [MTUNet](https://github.com/Dootmaan/MT-UNet)
 
 - [TransCeption](https://github.com/xmindflow/TransCeption)
 
