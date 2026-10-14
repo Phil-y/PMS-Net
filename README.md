@@ -1,6 +1,5 @@
 # PMS_Net
 
-This repository is the official implementation of PMS-Net: A Lightweight Convolutional Attention U-Shaped Network for Medical Image Segmentation using PyTorch.
 
 ![PMS-Net](figure/model.jpg)
 
